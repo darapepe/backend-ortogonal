@@ -1,9 +1,6 @@
 const http = require('http')
 
-let hostname = 'localhost'
-let port = 80
-
-function funcion(req, res) {
+http.createServer( (req, res) => {
     const vara1 = req.headers.a1
     const vara2 = req.headers.a2
     const varb1 = req.headers.b1
@@ -20,10 +17,4 @@ function funcion(req, res) {
         res.statusCode = 200
         res.setHeader('Content-type', 'application/json')
         res.end(JSON.stringify({ resultado: `${calculo}`, calculo: `${result}` }))
-}
-
-let server = http.createServer(funcion)
-
-server.listen(port, hostname, () => {
-    console.log('Servidor ejecutandose')
-})
+}).listen(80)
