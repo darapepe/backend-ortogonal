@@ -1,7 +1,7 @@
 const http = require('http')
 
 let hostname = 'localhost'
-let port = 3000
+let port = 80
 
 function funcion(req, res) {
     const vara1 = req.headers.a1
