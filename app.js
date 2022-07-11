@@ -1,4 +1,7 @@
 const http = require('http')
+require('dotenv').config()
+
+const PORT = process.env.PORT
 
 http.createServer( (req, res) => {
     const vara1 = req.headers.a1
@@ -17,4 +20,7 @@ http.createServer( (req, res) => {
         res.statusCode = 200
         res.setHeader('Content-type', 'application/json')
         res.end(JSON.stringify({ resultado: `${calculo}`, calculo: `${result}` }))
-}).listen(80)
+}).listen(PORT, err => {
+    if(err) throw err;
+    console.log("%c Server running", "color: green");
+})
