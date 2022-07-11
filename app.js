@@ -3,6 +3,12 @@ require('dotenv').config()
 
 const PORT = process.env.PORT
 
+const cors = require('cors')
+
+var corsOptions = {
+    origin: '*'
+}
+
 http.createServer( (req, res) => {
     const vara1 = req.headers.a1
     const vara2 = req.headers.a2
@@ -19,6 +25,7 @@ http.createServer( (req, res) => {
         //const calculo = result = 0 ? "Es Ortogonal" : "No es Ortogonal";
         res.statusCode = 200
         res.setHeader('Content-type', 'application/json')
+        res.setHeader('Access-Control-Allow-Origin', '*')
         res.end(JSON.stringify({ resultado: `${calculo}`, calculo: `${result}` }))
 }).listen(PORT, err => {
     if(err) throw err;
