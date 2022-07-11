@@ -3,12 +3,6 @@ require('dotenv').config()
 
 const PORT = process.env.PORT
 
-const cors = require('cors')
-
-var corsOptions = {
-    origin: '*'
-}
-
 http.createServer( (req, res) => {
     const vara1 = req.headers.a1
     const vara2 = req.headers.a2
