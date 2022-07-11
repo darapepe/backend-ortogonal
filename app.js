@@ -1,31 +1,23 @@
 const http = require('http')
 require('dotenv').config()
 
+const express = require('express')
+
+const cors = require('cors')
+
+var corsOptions = {
+    origin: '*'
+}
+
 const PORT = process.env.PORT
 
-http.createServer((req, res) => {
-    const vara1 = req.headers.a1
-    const vara2 = req.headers.a2
-    const varb1 = req.headers.b1
-    const varb2 = req.headers.b2
-    var result = (vara1 * varb1 + vara2 * varb2)
+const app = express()
 
-    var calculo = ""
-    if (result === 0) {
-        calculo = "Es Ortogonal"
-    } else {
-        calculo = "No Es Ortogonal"
-    }
-    //const calculo = result = 0 ? "Es Ortogonal" : "No es Ortogonal";
-    res.statusCode = 200
-    res.setHeader('Content-type', 'application/json')
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Credentials', true)
-    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    //res.setHeader("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json')
-    res.setHeader('Access-Control-Allow-Headers', 'authorization, content-type');
-    res.end(JSON.stringify({ resultado: `${calculo}`, calculo: `${result}` }))
-}).listen(PORT, err => {
+const rutas = require('./Routes/rutas')
+
+app.use('/', cors(corsOptions), rutas)
+
+app.listen(PORT, err => {
     if (err) throw err;
-    console.log("%c Server running", "color: green");
+    console.log("%c Servidor corriendo", "color: green");
 })
