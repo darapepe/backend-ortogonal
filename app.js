@@ -20,9 +20,9 @@ http.createServer((req, res) => {
     res.statusCode = 200
     res.setHeader('Content-type', 'application/json')
     res.setHeader('Access-Control-Allow-Origin', '*')
-    res.header("Access-Control-Allow-Credentials", true)
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json')
+    res.setHeader("Access-Control-Allow-Credentials", true)
+    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    res.setHeader("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json')
     res.end(JSON.stringify({ resultado: `${calculo}`, calculo: `${result}` }))
 }).listen(PORT, err => {
     if (err) throw err;
